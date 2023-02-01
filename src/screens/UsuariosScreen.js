@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Alert, FlatList, Text, View } from 'react-native'
+import { Alert, FlatList, Text, TouchableOpacity, View } from 'react-native'
 import Icon from 'react-native-vector-icons/AntDesign'
 
 
@@ -21,7 +21,7 @@ export const UsuariosScreen = () => {
     
     
     const UserElement=({itemName,iconName})=>{
-       return(
+       return(    
         <View style={{flexDirection:"row"}}>
             <View style={{flex:0.10}}>
                 <Icon name={iconName} size={30} color="#900"/>
@@ -37,19 +37,21 @@ export const UsuariosScreen = () => {
         
     
     const renderItem=({item})=>(
+       
         <View style={{ flexDirection: "column", padding: 20, flex: 1 }}>         
             <UserElement itemName={item.name} iconName="user" />
             <UserElement itemName={item.email} iconName="mail" />
             <UserElement itemName={[item.address.street," ,",item.address.suite," ,",item.address.zipcode]} iconName="home" />
             <UserElement itemName={item.phone} iconName="phone" />
         </View>
+       
     
     )
     
   return (
     <FlatList
         data={listaUsuarios}
-        renderItem={renderItem(item)}
+        renderItem={renderItem}
         keyExtractor={({ id }, index) => id}
       />
   )
